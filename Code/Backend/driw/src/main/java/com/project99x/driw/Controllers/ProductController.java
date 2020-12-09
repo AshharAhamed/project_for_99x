@@ -4,6 +4,9 @@ import com.project99x.driw.DTO.ProductDTO;
 import com.project99x.driw.Entities.Product;
 import com.project99x.driw.Services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,17 +34,28 @@ public class ProductController {
     }
 
     @GetMapping("/{uuid}")
-    public Product getProductByUuid(@PathVariable String uuid) {
+    public HttpEntity<? extends Object> getProductByUuid(@PathVariable String uuid) {
         System.out.println("Greetings from Spring Boot!");
         Product products = productService.getProductByUuid(uuid);
         System.out.println(products);
-        return products;
+
+        if (products == null){
+            return new ResponseEntity<>("Product not found", HttpStatus.NO_CONTENT);
+        }else{
+            return new ResponseEntity<Product>(products, HttpStatus.OK);
+        }
+
     }
 
-    @PostMapping(path = "/add")
-    public ProductDTO purchaseProducct(@RequestBody ProductDTO purchasedProduct){
+    @PostMapping(path = "/purchase")
+    public ResponseEntity<ProductDTO> purchaseProducct(@RequestBody ProductDTO purchasedProduct){
 
         ProductDTO productDTO = productService.purchase(purchasedProduct);
-        return null;
+        if (productDTO==null){
+            return new ResponseEntity<ProductDTO>(HttpStatus.NO_CONTENT);
+        }else{
+            return new ResponseEntity<ProductDTO>(productDTO, HttpStatus.OK);
+        }
+//        return productDTO;
     }
 }
