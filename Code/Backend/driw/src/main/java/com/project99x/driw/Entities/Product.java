@@ -21,6 +21,15 @@ public class Product {
     @Column(name = "cartonPrice")
     private float cartonPrice;
 
+    /**
+     * Entity Constructor
+     * @param id
+     * @param uuid
+     * @param name
+     * @param unitPerCarton
+     * @param stock
+     * @param cartonPrice
+     */
     public Product(long id, String uuid, String name, int unitPerCarton, int stock, float cartonPrice) {
         this.id = id;
         this.uuid = uuid;

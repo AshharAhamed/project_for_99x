@@ -5,6 +5,9 @@ import com.project99x.driw.Entities.Product;
 
 import java.util.List;
 
+/**
+ * interface to hide the product service implementation
+ */
 public interface ProductService {
 
     public List<Product> getAllProducts();

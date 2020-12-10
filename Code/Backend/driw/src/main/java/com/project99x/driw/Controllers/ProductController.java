@@ -12,14 +12,26 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /*@CrossOrigin(origins = {"http://localhost:3000", "https://neo-bus-frontend.herokuapp.com"})*/
+
+/**
+ * REST controller
+ * enable crossorgin for http://localhost:3000 react app
+ */
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
 @RequestMapping(path = "/product")
 public class ProductController {
 
+    /**
+     * declaration of product service implementation using its interface
+     */
     @Autowired
     private ProductService productService;
 
+    /**
+     * REST end-point for check the controller
+     * @return
+     */
     @GetMapping("/")
     public String index() {
         System.out.println("Greetings from Spring Boot!");
@@ -27,6 +39,10 @@ public class ProductController {
         return "Hello All";
     }
 
+    /**
+     * REST end-point for get all product
+     * @return
+     */
     @GetMapping("/all")
     public List<Product> getAllProduct() {
         System.out.println("Greetings from Spring Boot!");
@@ -34,6 +50,13 @@ public class ProductController {
         return products;
     }
 
+    /**
+     *
+     * get Product by ID end-point
+     *
+     * @param id
+     * @return
+     */
     @GetMapping("/id")
     public Product getProductById(@RequestParam int id) {
         System.out.println("Greetings from Spring Boot!");
@@ -41,6 +64,11 @@ public class ProductController {
         return products;
     }
 
+    /**
+     * get pri]oduct by it's UUID end-point
+     * @param uuid
+     * @return
+     */
     @GetMapping("/{uuid}")
     public HttpEntity<? extends Object> getProductByUuid(@PathVariable String uuid) {
         System.out.println("Greetings from Spring Boot!");

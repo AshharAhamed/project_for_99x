@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * DTO class for transfer data between the client and the server with the price and buying quantity details
+ */
 public class ProductDTO {
 
     private long id;
