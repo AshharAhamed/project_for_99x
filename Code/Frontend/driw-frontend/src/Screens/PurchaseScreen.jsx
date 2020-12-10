@@ -58,7 +58,6 @@ export default class PurchaseScreen extends Component {
         let price = this.state.product.cartonPrice * 1.3
         return (
             <>
-                <h1>Hello U r here to buy : {this.state.product.name}</h1>
                 <Row>
                     <Col md={9}>
                         <h2>Product Name : {this.state.product.name}</h2>
