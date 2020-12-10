@@ -57,14 +57,14 @@ public class ProductServiceImpl implements ProductService {
         if (product==null){
             purchasedProduct=null;
         }else{
-            purchasedProduct.setTotal(this.calculateTotal(purchasedProduct.getUuid(), purchasedProduct.getUnitPurchased()));
+            purchasedProduct.setTotal(this.calculateTotal(purchasedProduct.getUuid(), purchasedProduct.getUnitPurchased(), product));
         }
 
         return purchasedProduct;
     }
 
-    public float calculateTotal(String uuid, int purchaseQty){
-        Product product = this.getProductByUuid(uuid);
+    public float calculateTotal(String uuid, int purchaseQty, Product product){
+        /*Product product = this.getProductByUuid(uuid);*/
         float totalPrice = (float) 0.0;
         float unitPrice = (float) 0.0;
         float cartonPrice = product.getCartonPrice();

@@ -21,6 +21,18 @@ public class Product {
     @Column(name = "cartonPrice")
     private float cartonPrice;
 
+    public Product(long id, String uuid, String name, int unitPerCarton, int stock, float cartonPrice) {
+        this.id = id;
+        this.uuid = uuid;
+        this.name = name;
+        this.unitPerCarton = unitPerCarton;
+        this.stock = stock;
+        this.cartonPrice = cartonPrice;
+    }
+
+    public Product() {
+    }
+
     public long getId() {
         return id;
     }

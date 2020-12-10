@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@CrossOrigin(origins = {"http://localhost:3000", "https://neo-bus-frontend.herokuapp.com"})
+/*@CrossOrigin(origins = {"http://localhost:3000", "https://neo-bus-frontend.herokuapp.com"})*/
+@CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
 @RequestMapping(path = "/product")
 public class ProductController {
@@ -19,7 +20,14 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/hello")
+    @GetMapping("/")
+    public String index() {
+        System.out.println("Greetings from Spring Boot!");
+
+        return "Hello All";
+    }
+
+    @GetMapping("/all")
     public List<Product> getAllProduct() {
         System.out.println("Greetings from Spring Boot!");
         List<Product> products = productService.getAllProducts();
@@ -41,8 +49,26 @@ public class ProductController {
 
         if (products == null){
             return new ResponseEntity<>("Product not found", HttpStatus.NO_CONTENT);
+//            return products;
         }else{
             return new ResponseEntity<Product>(products, HttpStatus.OK);
+//            return products;
+        }
+
+    }
+
+    @GetMapping("/test/{uuidt}")
+    public Product getProductByUuidforTest(@PathVariable String uuidt) {
+        System.out.println("Greetings from Spring Boot!");
+        Product products = productService.getProductByUuid(uuidt);
+        System.out.println(products);
+
+        if (products == null){
+//            return new ResponseEntity<>("Product not found", HttpStatus.NO_CONTENT);
+            return products;
+        }else{
+//            return new ResponseEntity<Product>(products, HttpStatus.OK);
+            return products;
         }
 
     }

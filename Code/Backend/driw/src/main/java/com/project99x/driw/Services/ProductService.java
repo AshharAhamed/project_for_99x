@@ -14,4 +14,6 @@ public interface ProductService {
     Product getProductByUuid(String uuid);
 
     ProductDTO purchase(ProductDTO purchasedProduct);
+
+    float calculateTotal(String s, int i, Product product);
 }
